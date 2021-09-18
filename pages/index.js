@@ -6,7 +6,7 @@ import {
     Radio,
 } from "@material-ui/core";
 
-import firebase from "./config/firebase.js";
+import firebase from "../config/firebase.js";
 
 export default function Home() {
     const questionPropList = [
