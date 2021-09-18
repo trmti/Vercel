@@ -10,9 +10,9 @@ import firebase from "./config/firebase.js";
 
 export default function Home() {
     const questionPropList = [
-        { id: 0, value: "yes", text: "はい" },
-        { id: 1, value: "no", text: "いいえ" },
-        { id: 2, value: "other", text: "わからない" },
+        { key: 0, value: "yes", text: "はい" },
+        { key: 1, value: "no", text: "いいえ" },
+        { key: 2, value: "other", text: "わからない" },
     ];
 
     const { register, handleSubmit, watch, control } = useForm();
@@ -42,7 +42,7 @@ export default function Home() {
                     <label htmlFor="lastQuestion">
                         これまでに学習した言語を教えて下さい
                     </label>
-                    <div id="lastQuestion">
+                    <div key="lastQuestion">
                         <TextField
                             label="これまで学習した言語"
                             multiline
@@ -65,7 +65,7 @@ export default function Home() {
                 <label htmlFor="inputBirthDay">
                     生年月日を8桁の数字で入力してください
                 </label>
-                <div id="inputBirthDay">
+                <div key="inputBirthDay">
                     <TextField
                         label="生年月日"
                         required
@@ -81,22 +81,25 @@ export default function Home() {
                     <label htmlFor="question1_wrapper">
                         現在、プログラミングを学習していますか？
                     </label>
-                    <RadioGroup id="question1_wrapper">
+                    <RadioGroup key="question1_wrapper">
                         <Controller
                             render={({ field }) => {
                                 return (
                                     <>
-                                        {questionPropList.map((props) => {
-                                            return (
-                                                <FormControlLabel
-                                                    {...field}
-                                                    value={props.value}
-                                                    name="question1"
-                                                    label={props.text}
-                                                    control={<Radio />}
-                                                />
-                                            );
-                                        })}
+                                        {questionPropList.map(
+                                            (props, index) => {
+                                                return (
+                                                    <FormControlLabel
+                                                        {...field}
+                                                        value={props.value}
+                                                        name="question1"
+                                                        label={props.text}
+                                                        key={index}
+                                                        control={<Radio />}
+                                                    />
+                                                );
+                                            }
+                                        )}
                                     </>
                                 );
                             }}
@@ -109,22 +112,25 @@ export default function Home() {
                     <label htmlFor="question2_wrapper">
                         これまでに、プログラミングを学習したことがありますか？
                     </label>
-                    <RadioGroup id="question2_wrapper">
+                    <RadioGroup key="question2_wrapper">
                         <Controller
                             render={({ field }) => {
                                 return (
                                     <>
-                                        {questionPropList.map((props) => {
-                                            return (
-                                                <FormControlLabel
-                                                    {...field}
-                                                    value={props.value}
-                                                    name="question2"
-                                                    label={props.text}
-                                                    control={<Radio />}
-                                                />
-                                            );
-                                        })}
+                                        {questionPropList.map(
+                                            (props, index) => {
+                                                return (
+                                                    <FormControlLabel
+                                                        {...field}
+                                                        value={props.value}
+                                                        name="question2"
+                                                        label={props.text}
+                                                        control={<Radio />}
+                                                        key={index}
+                                                    />
+                                                );
+                                            }
+                                        )}
                                     </>
                                 );
                             }}
